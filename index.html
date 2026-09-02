@@ -85,7 +85,7 @@ const cats=["Todas","Café","Frappés","Matcha","Smoothies","Bebidas frías","Ch
 let current="Todas";
 
 function renderCats(){
-catsEl=document.getElementById("cats");
+const catsEl=document.getElementById("cats");
 catsEl.innerHTML=cats.map(c=>`<button class="${c===current?"active":""}" onclick="setCat('${c}')">${c}</button>`).join("");
 }
 
