@@ -55,12 +55,30 @@ footer{text-align:center;padding:30px;color:#817568;font-size:12px}
 
 <script>
 const recipes=[
-{name:"Latte de Fresa",cat:"Bebidas frías",icon:"🍓",time:"5 min",ing:["150 ml leche","40 g fresa","15 ml jarabe de vainilla","Hielo","1 espresso"],steps:"Licúa la fresa con un poco de leche. Agrega hielo al vaso, leche, la mezcla de fresa y termina con el espresso."},
-{name:"Matcha Latte",cat:"Matcha",icon:"🍵",time:"4 min",ing:["2 g matcha","30 ml agua caliente","180 ml leche","Hielo","10 ml jarabe opcional"],steps:"Disuelve el matcha con el agua caliente. Agrega hielo y leche al vaso y termina con el matcha."},
-{name:"Mocha Frappé",cat:"Frappés",icon:"🍫",time:"6 min",ing:["1 espresso","180 ml leche","25 g chocolate","20 g azúcar","120 g hielo"],steps:"Licúa todos los ingredientes hasta obtener una textura cremosa y sirve inmediatamente."},
-{name:"Smoothie Tropical",cat:"Smoothies",icon:"🥭",time:"5 min",ing:["80 g mango","60 g piña","150 ml leche o yogur","80 g hielo","15 ml miel"],steps:"Coloca todo en la licuadora y procesa hasta obtener una textura uniforme."},
-{name:"Limonada de Hierbabuena",cat:"Limonadas",icon:"🍋",time:"4 min",ing:["60 ml jugo de limón","250 ml agua","20 g azúcar","6 hojas de hierbabuena","Hielo"],steps:"Mezcla el limón, agua y azúcar. Agrega hielo y hierbabuena. Revuelve y sirve."},
-{name:"Chocolate Cremoso",cat:"Chocolate",icon:"🍫",time:"7 min",ing:["200 ml leche","25 g chocolate","10 g cacao","10 g azúcar"],steps:"Calienta la leche y agrega chocolate, cacao y azúcar. Mezcla hasta obtener una bebida cremosa."}
+{name:"Espresso",cat:"Café",icon:"☕",time:"2 min",ing:["18 g café","36 ml agua"],steps:"Extrae el espresso buscando una extracción equilibrada y sirve inmediatamente."},
+{name:"Americano",cat:"Café",icon:"☕",time:"3 min",ing:["1 espresso","120 ml agua caliente"],steps:"Prepara el espresso y agrega el agua caliente."},
+{name:"Cappuccino",cat:"Café",icon:"☕",time:"5 min",ing:["1 espresso","100 ml leche","Espuma de leche"],steps:"Prepara el espresso. Texturiza la leche y sirve buscando una proporción equilibrada entre café, leche y espuma."},
+{name:"Latte",cat:"Café",icon:"☕",time:"5 min",ing:["1 espresso","180 ml leche","Espuma ligera"],steps:"Prepara el espresso, texturiza la leche y viértela lentamente sobre el café."},
+{name:"Caramel Macchiato",cat:"Café",icon:"🍮",time:"5 min",ing:["1 espresso","180 ml leche","20 ml caramelo","10 ml vainilla"],steps:"Agrega vainilla y leche texturizada. Termina con el espresso y caramelo."},
+
+{name:"Frappé de Café",cat:"Frappés",icon:"🧊",time:"5 min",ing:["1 espresso","150 ml leche","20 g azúcar","120 g hielo"],steps:"Licúa todos los ingredientes hasta obtener una textura cremosa."},
+{name:"Frappé de Chocolate",cat:"Frappés",icon:"🍫",time:"5 min",ing:["150 ml leche","25 g chocolate","15 g azúcar","120 g hielo"],steps:"Licúa todos los ingredientes hasta conseguir una textura uniforme y cremosa."},
+{name:"Frappé de Fresa",cat:"Frappés",icon:"🍓",time:"5 min",ing:["150 ml leche","60 g fresa","15 ml vainilla","120 g hielo"],steps:"Licúa la fresa, leche, vainilla y hielo hasta obtener una mezcla cremosa."},
+
+{name:"Matcha Latte",cat:"Matcha",icon:"🍵",time:"4 min",ing:["2 g matcha","30 ml agua caliente","180 ml leche","10 ml jarabe opcional"],steps:"Disuelve el matcha con el agua caliente. Agrega la leche y sirve caliente o con hielo."},
+{name:"Matcha Fresa",cat:"Matcha",icon:"🍓",time:"5 min",ing:["2 g matcha","30 ml agua","150 ml leche","50 g fresa","10 ml vainilla"],steps:"Prepara el matcha. Coloca la fresa en el vaso, agrega hielo y leche y termina con el matcha."},
+
+{name:"Smoothie Tropical",cat:"Smoothies",icon:"🥭",time:"5 min",ing:["80 g mango","60 g piña","150 ml yogur","80 g hielo","15 ml miel"],steps:"Licúa todos los ingredientes hasta conseguir una textura suave."},
+{name:"Smoothie Fresa-Banana",cat:"Smoothies",icon:"🍓",time:"5 min",ing:["80 g fresa","80 g banana","150 ml leche","80 g hielo"],steps:"Licúa todos los ingredientes hasta obtener una mezcla cremosa."},
+
+{name:"Limonada de Hierbabuena",cat:"Limonadas",icon:"🍋",time:"4 min",ing:["60 ml jugo de limón","250 ml agua","20 g azúcar","6 hojas de hierbabuena","Hielo"],steps:"Mezcla limón, agua y azúcar. Agrega hielo y hierbabuena."},
+{name:"Limonada de Fresa",cat:"Limonadas",icon:"🍓",time:"5 min",ing:["60 ml limón","60 g fresa","250 ml agua","20 g azúcar","Hielo"],steps:"Licúa la fresa con el agua. Mezcla con limón y azúcar y sirve con hielo."},
+
+{name:"Chocolate Cremoso",cat:"Chocolate",icon:"🍫",time:"7 min",ing:["200 ml leche","25 g chocolate","10 g cacao","10 g azúcar"],steps:"Calienta la leche y agrega chocolate, cacao y azúcar. Mezcla hasta obtener una bebida cremosa."},
+{name:"Chocolate Blanco",cat:"Chocolate",icon:"🤍",time:"6 min",ing:["200 ml leche","30 g chocolate blanco","10 ml vainilla"],steps:"Calienta la leche, agrega el chocolate blanco y mezcla hasta disolver. Termina con vainilla."},
+
+{name:"Mojito Sin Alcohol",cat:"Mocktails",icon:"🍹",time:"4 min",ing:["30 ml limón","10 ml jarabe","8 hojas de hierbabuena","Agua mineral","Hielo"],steps:"Machaca ligeramente la hierbabuena con limón y jarabe. Agrega hielo y completa con agua mineral."},
+{name:"Berry Fizz",cat:"Mocktails",icon:"🫐",time:"4 min",ing:["60 g frutos rojos","20 ml limón","15 ml jarabe","Agua mineral","Hielo"],steps:"Machaca los frutos rojos con limón y jarabe. Agrega hielo y completa con agua mineral."}
 ];
 
 const cats=["Todas","Café","Frappés","Matcha","Smoothies","Bebidas frías","Chocolate","Limonadas","Mocktails"];
