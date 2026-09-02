@@ -1,0 +1,10 @@
+{
+  "name": "DrinkLab",
+  "short_name": "DrinkLab",
+  "description": "Recetas inteligentes para cafeterías",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f0e7",
+  "theme_color": "#6f7f55",
+  "orientation": "portrait"
+}
