@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6f7f55">
+<title>DrinkLab</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f0e7;color:#30281f}
+header{background:#6f7f55;color:white;padding:28px 20px 22px;border-radius:0 0 28px 28px}
+h1{margin:0;font-size:32px}
+header p{margin:6px 0 20px;opacity:.9}
+.search{width:100%;padding:14px 16px;border:0;border-radius:14px;font-size:16px}
+main{padding:20px}
+.categories{display:flex;gap:9px;overflow-x:auto;padding-bottom:15px}
+.categories button{border:0;border-radius:20px;padding:10px 15px;background:#dfd4c3;color:#493d31;white-space:nowrap}
+.categories button.active{background:#b88a62;color:white}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:white;border-radius:20px;padding:17px;box-shadow:0 4px 14px #00000012}
+.icon{font-size:34px}
+.card h3{margin:9px 0 5px}
+.card p{margin:0;color:#756b60;font-size:13px}
+.tag{display:inline-block;margin-top:10px;background:#ede3d1;padding:5px 9px;border-radius:10px;font-size:11px}
+.modal{display:none;position:fixed;inset:0;background:#0008;align-items:end;z-index:5}
+.box{background:#f8f4ec;border-radius:28px 28px 0 0;padding:25px;max-height:88vh;overflow:auto;width:100%}
+.close{float:right;border:0;background:#ddd0c0;border-radius:50%;width:35px;height:35px}
+.box h2{margin-top:5px}
+.box li{margin:9px 0}
+footer{text-align:center;padding:30px;color:#817568;font-size:12px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>DrinkLab ☕</h1>
+<p>Recetas inteligentes para cafeterías</p>
+<input id="search" class="search" placeholder="Buscar bebida...">
+</header>
+
+<main>
+<div class="categories" id="cats"></div>
+<div class="grid" id="grid"></div>
+</main>
+
+<footer>DrinkLab · Tu laboratorio de bebidas</footer>
+
+<div class="modal" id="modal">
+<div class="box">
+<button class="close" onclick="closeModal()">×</button>
+<div id="detail"></div>
+</div>
+</div>
+
+<script>
+const recipes=[
+{name:"Latte de Fresa",cat:"Bebidas frías",icon:"🍓",time:"5 min",ing:["150 ml leche","40 g fresa","15 ml jarabe de vainilla","Hielo","1 espresso"],steps:"Licúa la fresa con un poco de leche. Agrega hielo al vaso, leche, la mezcla de fresa y termina con el espresso."},
+{name:"Matcha Latte",cat:"Matcha",icon:"🍵",time:"4 min",ing:["2 g matcha","30 ml agua caliente","180 ml leche","Hielo","10 ml jarabe opcional"],steps:"Disuelve el matcha con el agua caliente. Agrega hielo y leche al vaso y termina con el matcha."},
+{name:"Mocha Frappé",cat:"Frappés",icon:"🍫",time:"6 min",ing:["1 espresso","180 ml leche","25 g chocolate","20 g azúcar","120 g hielo"],steps:"Licúa todos los ingredientes hasta obtener una textura cremosa y sirve inmediatamente."},
+{name:"Smoothie Tropical",cat:"Smoothies",icon:"🥭",time:"5 min",ing:["80 g mango","60 g piña","150 ml leche o yogur","80 g hielo","15 ml miel"],steps:"Coloca todo en la licuadora y procesa hasta obtener una textura uniforme."},
+{name:"Limonada de Hierbabuena",cat:"Limonadas",icon:"🍋",time:"4 min",ing:["60 ml jugo de limón","250 ml agua","20 g azúcar","6 hojas de hierbabuena","Hielo"],steps:"Mezcla el limón, agua y azúcar. Agrega hielo y hierbabuena. Revuelve y sirve."},
+{name:"Chocolate Cremoso",cat:"Chocolate",icon:"🍫",time:"7 min",ing:["200 ml leche","25 g chocolate","10 g cacao","10 g azúcar"],steps:"Calienta la leche y agrega chocolate, cacao y azúcar. Mezcla hasta obtener una bebida cremosa."}
+];
+
+const cats=["Todas","Café","Frappés","Matcha","Smoothies","Bebidas frías","Chocolate","Limonadas","Mocktails"];
+let current="Todas";
+
+function renderCats(){
+catsEl=document.getElementById("cats");
+catsEl.innerHTML=cats.map(c=>`<button class="${c===current?"active":""}" onclick="setCat('${c}')">${c}</button>`).join("");
+}
+
+function render(){
+let q=document.getElementById("search").value.toLowerCase();
+let list=recipes.filter(r=>(current==="Todas"||r.cat===current)&&r.name.toLowerCase().includes(q));
+document.getElementById("grid").innerHTML=list.map((r,i)=>`
+<div class="card" onclick="openRecipe(${recipes.indexOf(r)})">
+<div class="icon">${r.icon}</div>
+<h3>${r.name}</h3>
+<p>${r.time} · ${r.cat}</p>
+<span class="tag">Ver receta</span>
+</div>`).join("")||"<p>No encontramos bebidas.</p>";
+}
+
+function setCat(c){current=c;renderCats();render()}
+function openRecipe(i){
+let r=recipes[i];
+document.getElementById("detail").innerHTML=`
+<div class="icon">${r.icon}</div>
+<h2>${r.name}</h2>
+<p><b>${r.cat}</b> · ${r.time}</p>
+<h3>Ingredientes</h3>
+<ul>${r.ing.map(x=>`<li>${x}</li>`).join("")}</ul>
+<h3>Preparación</h3>
+<p>${r.steps}</p>`;
+document.getElementById("modal").style.display="flex";
+}
+function closeModal(){document.getElementById("modal").style.display="none"}
+document.getElementById("search").addEventListener("input",render);
+renderCats();
+render();
+</script>
+</body>
+</html>
