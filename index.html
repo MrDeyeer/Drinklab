@@ -100,6 +100,7 @@ function closeModal(){document.getElementById("modal").style.display="none"}
 document.getElementById("search").addEventListener("input",render);
 renderCats();
 render();
+
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js");
 </script>
 </body>
