@@ -1,6 +1,6 @@
 {
-  "name": "DrinkLab",
-  "short_name": "DrinkLab",
+  "name": "Recenslabs",
+  "short_name": "Recenslabs",
   "description": "Recetas inteligentes para cafeterías",
   "start_url": "./",
   "display": "standalone",
