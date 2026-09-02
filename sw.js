@@ -1,4 +1,4 @@
-const CACHE = "drinklab-v1";
+const CACHE = "Recenslabs-v1";
 
 self.addEventListener("install", event => {
   event.waitUntil(
